@@ -1,7 +1,8 @@
 import './app.css';
+import Items from './component/items';
 
 function App() {
-  return <h1>Hello~~</h1>;
+  return <Items />;
 }
 
 export default App;
