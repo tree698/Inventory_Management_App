@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 
 class Item extends Component {
   handleIncrement = () => {
-    this.setState({ count: (this.state.count += 1) });
+    this.props.onIncrement(this.props.item);
   };
 
   handleDecrement = () => {
-    const count = (this.state.count -= 1);
-    this.setState({ count: count < 0 ? 0 : count });
+    this.props.onDecrement(this.props.item);
   };
 
   handleReset = () => {
-    this.setState({ count: 0 });
+    this.props.onReset(this.props.item);
   };
 
-  handleDelete = () => {};
+  handleDelete = () => {
+    this.props.onDelete(this.props.item);
+  };
 
   render() {
     const { name, count } = this.props.item;
