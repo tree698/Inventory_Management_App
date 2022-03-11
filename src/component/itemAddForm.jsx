@@ -16,7 +16,7 @@ class ItemAddForm extends Component {
           ref={this.inputRef}
           type="text"
           className="add-input"
-          placeholder="Enter your inventory"
+          placeholder="Enter your item"
         />
         <button className="add-button">Add</button>
       </form>

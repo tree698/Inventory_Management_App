@@ -6,11 +6,7 @@ import ItemAddForm from './component/itemAddForm';
 
 class App extends Component {
   state = {
-    items: [
-      { id: 1, name: 'desk', count: 2 },
-      { id: 2, name: 'chair', count: 1 },
-      { id: 3, name: 'pencile', count: 2 },
-    ],
+    items: [],
   };
 
   handleIncrement = (item) => {
@@ -57,11 +53,10 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <section className="section">
         <Navbar
           totalCount={this.state.items.filter((item) => item.count > 0).length}
         />
-        <ItemAddForm onSubmit={this.handleSubmit} />
         <Items
           items={this.state.items}
           onIncrement={this.handleIncrement}
@@ -69,10 +64,11 @@ class App extends Component {
           onReset={this.handleReset}
           onDelete={this.handleDelete}
         />
+        <ItemAddForm onSubmit={this.handleSubmit} />
         <button className="reset-button" onClick={this.handleClick}>
           Reset All
         </button>
-      </>
+      </section>
     );
   }
 }

@@ -7,8 +7,8 @@ class Navbar extends Component {
         <i className="nav-icon fa-solid fa-cart-flatbed"></i>
         <span className="nav-title">Your Inventory</span>
         <div className="nav-count">
-          Total Number of Inventory:
-          <span>{this.props.totalCount}</span>
+          Total Number of Items:
+          <span className="nav-count-num">{this.props.totalCount}</span>
         </div>
       </nav>
     );

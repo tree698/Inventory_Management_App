@@ -20,28 +20,39 @@ class Item extends Component {
   render() {
     const { name, count } = this.props.item;
     return (
-      <li className="habit">
-        <span className="item-name">{name}</span>
-        <button
-          className="item-button item-increase"
-          onClick={this.handleIncrement}
-        >
-          <i className="fa-solid fa-square-plus"></i>
-        </button>
-        <button
-          className="item-button item-decrease"
-          onClick={this.handleDecrement}
-        >
-          <i className="fa-solid fa-square-minus"></i>
-        </button>
-        <span className="item-count">{count}</span>
-        <button className="item-reset" onClick={this.handleReset}>
-          Reset
-        </button>
-        <button className="item-button item-delete" onClick={this.handleDelete}>
-          <i className="fa-solid fa-trash-can"></i>
-        </button>
-      </li>
+      <tbody>
+        <tr>
+          <td>{name}</td>
+          <td>
+            <button
+              className="item-button item-increase"
+              onClick={this.handleIncrement}
+            >
+              <i className="fa-solid fa-square-plus"></i>
+            </button>
+            <button
+              className="item-button item-decrease"
+              onClick={this.handleDecrement}
+            >
+              <i className="fa-solid fa-square-minus"></i>
+            </button>
+          </td>
+          <td>{count}</td>
+          <td>
+            <button className="item-reset" onClick={this.handleReset}>
+              Reset
+            </button>
+          </td>
+          <td>
+            <button
+              className="item-button item-delete"
+              onClick={this.handleDelete}
+            >
+              <i className="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
     );
   }
 }

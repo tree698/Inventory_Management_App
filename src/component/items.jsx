@@ -20,7 +20,16 @@ class Items extends Component {
 
   render() {
     return (
-      <ul className="items">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Inc/Dec</th>
+            <th>Balance</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
         {this.props.items.map((item) => (
           <Item
             key={item.id}
@@ -31,7 +40,7 @@ class Items extends Component {
             onDelete={this.handleDelete}
           />
         ))}
-      </ul>
+      </table>
     );
   }
 }
