@@ -10,24 +10,38 @@ class App extends Component {
   };
 
   handleIncrement = (item) => {
-    const items = [...this.state.items];
-    const index = items.indexOf(item);
-    items[index].count += 1;
+    const items = this.state.items.map((stateItem) => {
+      if (stateItem.id === item.id) {
+        return { ...item, count: item.count + 1 };
+      }
+      return stateItem;
+    });
     this.setState({ items });
+
+    // const items = [...this.state.items];
+    // const index = items.indexOf(item);
+    // items[index].count += 1;
+    // this.setState({ items });
   };
 
   handleDecrement = (item) => {
-    const items = [...this.state.items];
-    const index = items.indexOf(item);
-    const count = (items[index].count -= 1);
-    items[index].count = count < 0 ? 0 : count;
+    const items = this.state.items.map((stateItem) => {
+      if (stateItem.id === item.id) {
+        const count = stateItem.count - 1;
+        return { ...stateItem, count: count < 0 ? 0 : count };
+      }
+      return stateItem;
+    });
     this.setState({ items });
   };
 
   handleReset = (item) => {
-    const items = [...this.state.items];
-    const index = items.indexOf(item);
-    items[index].count = 0;
+    const items = this.state.items.map((stateItem) => {
+      if (stateItem.id === item.id) {
+        return { ...item, count: 0 };
+      }
+      return stateItem;
+    });
     this.setState({ items });
   };
 
@@ -39,13 +53,15 @@ class App extends Component {
   };
 
   handleSubmit = (name) => {
-    const inventory = [...this.state.items, { id: Date.now(), name, count: 0 }];
-    this.setState({ items: inventory });
+    const item = [...this.state.items, { id: Date.now(), name, count: 0 }];
+    this.setState({ items: item });
   };
 
-  handleClick = () => {
+  handleResetAll = () => {
     const items = this.state.items.map((item) => {
-      item.count = 0;
+      if (item.count !== 0) {
+        return { ...item, count: 0 };
+      }
       return item;
     });
     this.setState({ items });
@@ -65,7 +81,7 @@ class App extends Component {
           onDelete={this.handleDelete}
         />
         <ItemAddForm onSubmit={this.handleSubmit} />
-        <button className="reset-button" onClick={this.handleClick}>
+        <button className="reset-button" onClick={this.handleResetAll}>
           Reset All
         </button>
       </section>

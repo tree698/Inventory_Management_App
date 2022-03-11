@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Item extends Component {
+class Item extends PureComponent {
   handleIncrement = () => {
     this.props.onIncrement(this.props.item);
   };
