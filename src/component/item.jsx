@@ -1,6 +1,14 @@
 import React, { PureComponent } from 'react';
 
 class Item extends PureComponent {
+  componentDidMount() {
+    console.log(`${this.props.item.name} mounted`);
+  }
+
+  componentWillUnmount() {
+    console.log(`${this.props.item.name} will unmount`);
+  }
+
   handleIncrement = () => {
     this.props.onIncrement(this.props.item);
   };
