@@ -17,11 +17,6 @@ class App extends Component {
       return stateItem;
     });
     this.setState({ items });
-
-    // const items = [...this.state.items];
-    // const index = items.indexOf(item);
-    // items[index].count += 1;
-    // this.setState({ items });
   };
 
   handleDecrement = (item) => {
