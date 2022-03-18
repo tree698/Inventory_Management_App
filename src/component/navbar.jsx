@@ -1,18 +1,16 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 
-class Navbar extends PureComponent {
-  render() {
-    return (
-      <nav>
-        <i className="nav-icon fa-solid fa-cart-flatbed"></i>
-        <span className="nav-title">Your Inventory</span>
-        <div className="nav-count">
-          Total Number of Items:
-          <span className="nav-count-num">{this.props.totalCount}</span>
-        </div>
-      </nav>
-    );
-  }
-}
+const Navbar = memo((props) => {
+  return (
+    <nav>
+      <i className="nav-icon fa-solid fa-cart-flatbed"></i>
+      <span className="nav-title">Your Inventory</span>
+      <div className="nav-count">
+        Total Number of Items:
+        <span className="nav-count-num">{props.totalCount}</span>
+      </div>
+    </nav>
+  );
+});
 
 export default Navbar;

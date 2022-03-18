@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 
 const ItemAddForm = memo((props) => {
-  const inputRef = React.createRef();
+  const inputRef = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();

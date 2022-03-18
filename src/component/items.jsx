@@ -1,48 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Item from './item';
 
-class Items extends Component {
-  handleIncrement = (item) => {
-    this.props.onIncrement(item);
+const Items = (props) => {
+  const handleIncrement = (item) => {
+    props.onIncrement(item);
   };
 
-  handleDecrement = (item) => {
-    this.props.onDecrement(item);
+  const handleDecrement = (item) => {
+    props.onDecrement(item);
   };
 
-  handleReset = (item) => {
-    this.props.onReset(item);
+  const handleReset = (item) => {
+    props.onReset(item);
   };
 
-  handleDelete = (item) => {
-    this.props.onDelete(item);
+  const handleDelete = (item) => {
+    props.onDelete(item);
   };
 
-  render() {
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Inc/Dec</th>
-            <th>Balance</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        {this.props.items.map((item) => (
-          <Item
-            key={item.id}
-            item={item}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onReset={this.handleReset}
-            onDelete={this.handleDelete}
-          />
-        ))}
-      </table>
-    );
-  }
-}
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Inc/Dec</th>
+          <th>Balance</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      {props.items.map((item) => (
+        <Item
+          key={item.id}
+          item={item}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+          onReset={handleReset}
+          onDelete={handleDelete}
+        />
+      ))}
+    </table>
+  );
+};
 
 export default Items;
