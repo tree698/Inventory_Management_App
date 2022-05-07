@@ -1,21 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Item from './item';
+import ReactPaginate from 'react-paginate';
 
-const Items = (props) => {
+const Items = ({
+  itemsPerPage,
+  topItems,
+  onIncrement,
+  onDecrement,
+  onReset,
+  onDelete,
+}) => {
   const handleIncrement = (item) => {
-    props.onIncrement(item);
+    onIncrement(item);
   };
 
   const handleDecrement = (item) => {
-    props.onDecrement(item);
+    onDecrement(item);
   };
 
   const handleReset = (item) => {
-    props.onReset(item);
+    onReset(item);
   };
 
   const handleDelete = (item) => {
-    props.onDelete(item);
+    onDelete(item);
+  };
+
+  const [currentItems, setCurrentItems] = useState(null);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
+    // update가 안됨
+    const topItemsCopy = [...topItems];
+    setCurrentItems(topItems.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(topItems.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % topItems.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
   };
 
   return (
@@ -29,16 +59,37 @@ const Items = (props) => {
           <th></th>
         </tr>
       </thead>
-      {props.items.map((item) => (
-        <Item
-          key={item.id}
-          item={item}
-          onIncrement={handleIncrement}
-          onDecrement={handleDecrement}
-          onReset={handleReset}
-          onDelete={handleDelete}
-        />
-      ))}
+      {currentItems &&
+        currentItems.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            onIncrement={handleIncrement}
+            onDecrement={handleDecrement}
+            onReset={handleReset}
+            onDelete={handleDelete}
+          />
+        ))}
+      <ReactPaginate
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+        renderOnZeroPageCount={null}
+      />
     </table>
   );
 };

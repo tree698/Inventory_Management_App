@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Items from './component/items';
 import Navbar from './component/navbar';
-import './app.css';
+import Items from './component/items';
 import ItemAddForm from './component/itemAddForm';
 import PaginatedItems from './component/paginatedItems';
+import './app.css';
 
 class App extends Component {
   state = {
@@ -69,16 +69,9 @@ class App extends Component {
         <Navbar
           totalCount={this.state.items.filter((item) => item.count > 0).length}
         />
-        {/* <Items
-          items={this.state.items}
-          onIncrement={this.handleIncrement}
-          onDecrement={this.handleDecrement}
-          onReset={this.handleReset}
-          onDelete={this.handleDelete}
-        /> */}
-        <PaginatedItems
-          itemsPerPage={4}
-          items={this.state.items}
+        <Items
+          itemsPerPage={3}
+          topItems={this.state.items}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onReset={this.handleReset}

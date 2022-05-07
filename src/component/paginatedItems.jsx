@@ -1,41 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
+import Items from './items';
 
-const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-function Items({ currentItems }) {
-  return (
-    <>
-      {currentItems &&
-        currentItems.map((item) => (
-          <div>
-            <h3>Item #{item}</h3>
-          </div>
-        ))}
-    </>
-  );
-}
+// function Items({ currentItems }) {
+//   return (
+//     <>
+//       {currentItems &&
+//         currentItems.map((item) => (
+//           <div>
+//             <h3>Item #{item}</h3>
+//           </div>
+//         ))}
+//     </>
+//   );
+// }
 
-const PaginatedItems = ({ itemsPerPage }) => {
-  // We start with an empty list of items.
+const PaginatedItems = ({
+  itemsPerPage,
+  topItems,
+  onIncrement,
+  onDecrement,
+  onReset,
+  onDelete,
+}) => {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
   useEffect(() => {
-    // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(items.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(items.length / itemsPerPage));
+    setCurrentItems(topItems.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(topItems.length / itemsPerPage));
   }, [itemOffset, itemsPerPage]);
 
-  // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % topItems.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -44,7 +47,14 @@ const PaginatedItems = ({ itemsPerPage }) => {
 
   return (
     <>
-      <Items currentItems={currentItems} />
+      <Items
+        currentItems={currentItems}
+        topItems={topItems}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        onReset={onReset}
+        onDelete={onDelete}
+      />
       <ReactPaginate
         nextLabel="next >"
         onPageChange={handlePageClick}

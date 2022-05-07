@@ -1,27 +1,23 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 
-const item = memo((props) => {
-  useEffect(() => {
-    console.log(`${props.item.name} mounted`);
-  });
-
+const item = memo(({ item, onIncrement, onDecrement, onReset, onDelete }) => {
   const handleIncrement = () => {
-    props.onIncrement(props.item);
+    onIncrement(item);
   };
 
   const handleDecrement = () => {
-    props.onDecrement(props.item);
+    onDecrement(item);
   };
 
   const handleReset = () => {
-    props.onReset(props.item);
+    onReset(item);
   };
 
   const handleDelete = () => {
-    props.onDelete(props.item);
+    onDelete(item);
   };
 
-  const { name, count } = props.item;
+  const { name, count } = item;
 
   return (
     <tbody>
