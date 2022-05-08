@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './component/navbar';
 import Items from './component/items';
 import ItemAddForm from './component/itemAddForm';
-import PaginatedItems from './component/paginatedItems';
 import './app.css';
 
 class App extends Component {
