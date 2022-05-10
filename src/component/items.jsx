@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Item from './item';
 import ReactPaginate from 'react-paginate';
-import './items.css';
 
 const Items = ({
   itemsPerPage,
@@ -10,6 +9,7 @@ const Items = ({
   onDecrement,
   onReset,
   onDelete,
+  addItem,
 }) => {
   const handleIncrement = (item) => {
     onIncrement(item);
@@ -31,36 +31,23 @@ const Items = ({
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
-  // 마지막 페이지를 보여주도록...
-  // warning 해결할 것
-  // react hook으로 바꾸기 => 성능개선
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentItems(topItems.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(topItems.length / itemsPerPage));
-
-    // calculateOffset();
-
-    // setItemOffset(calculateOffset);
   }, [itemOffset, itemsPerPage, topItems]);
 
   useEffect(() => {
     setItemOffset(calculateOffset);
-  }, [topItems]);
+  }, [addItem]);
 
   const calculateOffset = () => {
     if (topItems.length === 0) {
       return;
     } else if (topItems.length % itemsPerPage === 0) {
-      console.log(
-        `offset: ${topItems.length / itemsPerPage - 1 + 1 * itemsPerPage}`
-      );
       return (topItems.length / itemsPerPage - 1) * itemsPerPage;
     } else {
-      console.log(
-        `offset: ${Math.floor(topItems.length / 3) + 1 * itemsPerPage}`
-      );
       return Math.floor(topItems.length / 3) * itemsPerPage;
     }
   };

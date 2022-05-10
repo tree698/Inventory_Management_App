@@ -7,6 +7,7 @@ import './app.css';
 class App extends Component {
   state = {
     items: [],
+    length: { count: 0 },
   };
 
   handleIncrement = (item) => {
@@ -49,7 +50,9 @@ class App extends Component {
 
   handleSubmit = (name) => {
     const item = [...this.state.items, { id: Date.now(), name, count: 0 }];
+    const itemLength = this.state.length.count;
     this.setState({ items: item });
+    this.setState({ length: { count: itemLength + 1 } });
   };
 
   handleResetAll = () => {
@@ -75,6 +78,7 @@ class App extends Component {
           onDecrement={this.handleDecrement}
           onReset={this.handleReset}
           onDelete={this.handleDelete}
+          addItem={this.state.length}
         />
         <ItemAddForm onSubmit={this.handleSubmit} />
         <button className="reset-button" onClick={this.handleResetAll}>
