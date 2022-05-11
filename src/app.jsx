@@ -72,7 +72,7 @@ class App extends Component {
           totalCount={this.state.items.filter((item) => item.count > 0).length}
         />
         <Items
-          itemsPerPage={3}
+          itemsPerPage={4}
           topItems={this.state.items}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}

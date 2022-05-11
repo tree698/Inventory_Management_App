@@ -48,7 +48,7 @@ const Items = ({
     } else if (topItems.length % itemsPerPage === 0) {
       return (topItems.length / itemsPerPage - 1) * itemsPerPage;
     } else {
-      return Math.floor(topItems.length / 3) * itemsPerPage;
+      return Math.floor(topItems.length / 4) * itemsPerPage;
     }
   };
 
@@ -61,48 +61,50 @@ const Items = ({
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Inc/Dec</th>
-          <th>Balance</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      {currentItems &&
-        currentItems.map((item) => (
-          <Item
-            key={item.id}
-            item={item}
-            onIncrement={handleIncrement}
-            onDecrement={handleDecrement}
-            onReset={handleReset}
-            onDelete={handleDelete}
-          />
-        ))}
-      <ReactPaginate
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        containerClassName="pagination"
-        activeClassName="active"
-        renderOnZeroPageCount={null}
-      />
-    </table>
+    <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Inc/Dec</th>
+            <th>Balance</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        {currentItems &&
+          currentItems.map((item) => (
+            <Item
+              key={item.id}
+              item={item}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+              onReset={handleReset}
+              onDelete={handleDelete}
+            />
+          ))}
+        <ReactPaginate
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={pageCount}
+          previousLabel="<"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          renderOnZeroPageCount={null}
+        />
+      </table>
+    </div>
   );
 };
 
