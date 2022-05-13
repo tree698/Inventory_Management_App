@@ -33,14 +33,14 @@ const Items = ({
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentItems(topItems.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(topItems.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, topItems]);
 
   useEffect(() => {
     setItemOffset(calculateOffset);
-  }, [addItem]);
+    console.log(pageCount);
+  }, [pageCount, addItem]);
 
   const calculateOffset = () => {
     if (topItems.length === 0) {
@@ -54,9 +54,6 @@ const Items = ({
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % topItems.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 
