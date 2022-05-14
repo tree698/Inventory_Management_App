@@ -10,7 +10,7 @@ To demonstrate my coding skills with react.
 
 ## ⭐ Tech Stack
 
-- HTML, CSS and React
+- HTML, CSS, JavaScript and React
 
 ## ⭐ How does it work?
 
@@ -19,7 +19,7 @@ To demonstrate my coding skills with react.
 
 | **Version** |                                                            **Demo**                                                             | **Features**     |
 | :---------: | :-----------------------------------------------------------------------------------------------------------------------------: | ---------------- |
-|   v1.1.0    | <img src="https://user-images.githubusercontent.com/53497516/168410999-f2be6f78-4723-40a4-94ea-b0efd2eb3d9a.png" width="610px"> | Add a pagination |
+|   v1.1.0    | <img src="https://user-images.githubusercontent.com/53497516/168410999-f2be6f78-4723-40a4-94ea-b0efd2eb3d9a.png" width="620px"> | Add a pagination |
 |   v1.0.0    |       ![Inventory](https://user-images.githubusercontent.com/53497516/157805891-7093aa78-3b25-4fba-9b08-6f959474dd10.gif)       |                  |
 
 ## ⭐ Development
