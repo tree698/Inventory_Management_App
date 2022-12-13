@@ -1,19 +1,15 @@
-# Inventory Management App
+# Inventory Management App:placard:
 
 ## ⭐ What is it?
-
-It is a simple app to manage items.
+- It is a simple app to manage items.
 
 ## ⭐ Why did I make this?
-
-To demonstrate my coding skills with react.
+- To demonstrate my coding skills with react.
 
 ## ⭐ Tech Stack
-
-- HTML, CSS, JavaScript and React
+- React, HTML, CSS and JavaScript
 
 ## ⭐ How does it work?
-
 - Typed item will be displayed to the table.
 - Increase/Decrease/Reset/Delete the number of the item by clicking its corresponding button.
 
@@ -23,9 +19,7 @@ To demonstrate my coding skills with react.
 |   v1.0.0    |       ![Inventory](https://user-images.githubusercontent.com/53497516/157805891-7093aa78-3b25-4fba-9b08-6f959474dd10.gif)       |                  |
 
 ## ⭐ Development
-
 - [https://tree698.github.io/Inventory_Management_App/](https://tree698.github.io/Inventory_Management_App/)
 
 ## ⭐ To be added features
-
 - [x] Add a pagination
